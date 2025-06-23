@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Reading: News Briefing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .correct {
+            background-color: #c6f6d5; /* green-200 */
+            border-left: 4px solid #38a169; /* green-600 */
+        }
+        .incorrect {
+            background-color: #fed7d7; /* red-200 */
+            border-left: 4px solid #c53030; /* red-600 */
+        }
+        .feedback {
+            font-weight: 500;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 0.25rem;
+            display: none; /* Hidden by default */
+        }
+        .feedback.show {
+            display: block;
+        }
+        .draggable {
+            cursor: move;
+            user-select: none;
+        }
+        .drop-zone {
+            border: 2px dashed #a0aec0; /* gray-400 */
+            min-height: 50px;
+        }
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #3182ce;
+        }
+        .input-field {
+             margin-top: 0.25rem;
+             display: block;
+             width: 100%;
+             border-radius: 0.375rem;
+             border: 1px solid #d1d5db;
+             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Page 1: Iran -->
+        <div id="page1" class="page active">
+            <header class="bg-blue-600 text-white p-6 rounded-xl shadow-lg mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold">Interactive Reading: Part 1 of 2</h1>
+                <p class="mt-2 text-blue-100">Topic: The US Targets Iran's Nuclear Programme</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Reading Text Column -->
+                <div class="bg-white p-6 rounded-xl shadow-md space-y-4 h-screen overflow-y-auto">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-200 pb-2">Reading Text</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p><strong>Kasia Broussalian:</strong> The US bombed three nuclear sites in Iran over the weekend. The attack marks a major escalation in the conflict, which had so far only involved Iran and Israel. It also marks a huge political gamble for US President Donald Trump. My colleague, Steff Chávez, has been covering the story from Washington. Hey, Steff.</p>
+                        <p><strong>Steff Chávez:</strong> Hey, Kasia.</p>
+                        <p><strong>Kasia Broussalian:</strong> So we know that Trump had spent the last week or so weighing military action. He said on Thursday that he’d take up to 14 days or so to decide what to do. Do we know why he moved up the timeline?</p>
+                        <p><strong>Steff Chávez:</strong> I mean, we can probably say that it was never an actual two-week timeline, but was kind of a mechanism for him to buy himself a few days and maybe even catch the Iranians by surprise. And then his decision also came after some of the US’s European allies negotiated directly with Iranian officials in Switzerland. I talked to one former Pentagon official who speculated that those unsuccessful EU talks were the final straw for Trump.</p>
+                        <p><strong>Kasia Broussalian:</strong> And what do we know about the mission itself and whether or not it was effective?</p>
+                        <p><strong>Steff Chávez:</strong> So right now, the Pentagon is saying that the strikes inflicted severe damage on Iran’s nuclear facilities, but there’s still a full damage assessment pending.</p>
+                        <p><strong>Kasia Broussalian:</strong> Now, speaking of Israel, Iran has traded a barrage of missile attacks with the country recently, but what sort of options does Tehran now have to respond to this US bombing?</p>
+                        <p><strong>Steff Chávez:</strong> So on one hand, Israel has been really effective in weakening Iran militarily... But despite that weakening, you know, there still are missiles that Iran can launch at US troops deployed in the Middle East. They could try to close the Strait of Hormuz... There could be new strikes by Iranian proxies. And then of course they could continue to attack Israel. Yesterday morning after the US strikes were complete, Iran struck Israel and came out and said that it was in retaliation for Washington’s attacks.</p>
+                        <p><strong>Kasia Broussalian:</strong> So the military operation brings very real risks... But what about for Trump himself? How big of a political gamble is it for the US?</p>
+                        <p><strong>Steff Chávez:</strong> It’s a huge political gamble. He campaigned for his second term on a promise of being a peacemaker to end America’s forever wars, but these strikes risk drawing the US into a longer conflict... this does risk becoming a protracted conflict... there were some lawmakers who questioned whether the president actually had the authority to do this.</p>
+                        <p><strong>Kasia Broussalian:</strong> ...are we seeing echoes here of the past in this latest US attack?</p>
+                        <p><strong>Steff Chávez:</strong> I think we’re absolutely seeing echoes of the past. I was talking to former Air Force Secretary Frank Kendall last night, and he told me every time we’ve tried to shift to strategically more important regions since 2001, violence originating in the Middle East has sucked the US back in. He said, here we go again.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Exercises Column -->
+                <div class="space-y-8 h-screen overflow-y-auto pr-4">
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">1. Useful Phrases</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><b>Marks a major escalation:</b> Indicates a significant increase in the intensity of a conflict.</li>
+                            <li><b>A huge political gamble:</b> A risky decision that could have big political consequences.</li>
+                            <li><b>Weighing military action:</b> Considering whether or not to use military force.</li>
+                            <li><b>Moved up the timeline:</b> Decided to do something earlier than planned.</li>
+                            <li><b>Buy himself a few days:</b> To get more time to make a decision.</li>
+                            <li><b>Catch the Iranians by surprise:</b> To do something they were not expecting.</li>
+                            <li><b>The final straw:</b> The last in a series of events that makes a situation unbearable.</li>
+                            <li><b>Traded a barrage of missile attacks:</b> Exchanged a large number of missile strikes with each other.</li>
+                            <li><b>Drawing the US into a longer conflict:</b> Involving the US in a war that lasts a long time.</li>
+                            <li><b>Seeing echoes here of the past:</b> Noticing similarities to events that happened before.</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">2. True or False?</h3>
+                        <div class="tf-quiz space-y-4">
+                            <div data-answer="F"><p>1. The US attack involved bombing five nuclear sites in Iran.</p><label><input type="radio" name="p1q1" value="T">T</label><label><input type="radio" name="p1q1" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>2. The conflict previously only involved Iran and the US.</p><label><input type="radio" name="p1q2" value="T">T</label><label><input type="radio" name="p1q2" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>3. The two-week timeline was likely a tactic to surprise Iran.</p><label><input type="radio" name="p1q3" value="T">T</label><label><input type="radio" name="p1q3" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>4. Successful EU talks with Iran prevented the attack.</p><label><input type="radio" name="p1q4" value="T">T</label><label><input type="radio" name="p1q4" value="F">F</label><div class="feedback"></div></div>
+                             <div data-answer="F"><p>5. The Pentagon has completed its full damage assessment.</p><label><input type="radio" name="p1q5" value="T">T</label><label><input type="radio" name="p1q5" value="F">F</label><div class="feedback"></div></div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">3. Vocabulary Matching</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 vocab-quiz">
+                            <div class="space-y-3 vocab-container">
+                                <div id="p1v1" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Escalation</div>
+                                <div id="p1v2" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Gamble</div>
+                                <div id="p1v3" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Mechanism</div>
+                                <div id="p1v4" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Proxies</div>
+                                <div id="p1v5" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Protracted</div>
+                            </div>
+                            <div class="space-y-3 definitions-container">
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v1">A rapid increase; a rise in seriousness</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v2">A risky action undertaken with the hope of success</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v3">A process or system for achieving a result</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v4">Groups acting on behalf of another</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v5">Lasting for a long time or longer than expected</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">4. Comprehension Questions</h3>
+                        <div class="comprehension-quiz space-y-4">
+                            <div><label class="font-medium">1. How many nuclear sites did the US bomb in Iran?</label><input type="text" class="input-field"><div class="feedback" data-answer="three"></div></div>
+                            <div><label class="font-medium">2. What event was described as the "final straw" for Trump?</label><input type="text" class="input-field"><div class="feedback" data-answer="unsuccessful eu talks"></div></div>
+                            <div><label class="font-medium">3. What is one potential way Iran could retaliate against the US?</label><input type="text" class="input-field"><div class="feedback" data-answer="strait of hormuz, proxies, attack troops"></div></div>
+                             <div><label class="font-medium">4. What is the main risk of these strikes for the US?</label><input type="text" class="input-field"><div class="feedback" data-answer="longer conflict, protracted"></div></div>
+                              <div><label class="font-medium">5. According to Frank Kendall, what keeps sucking the US back into the Middle East?</label><input type="text" class="input-field"><div class="feedback" data-answer="violence"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 2: Russia -->
+        <div id="page2" class="page">
+             <header class="bg-blue-600 text-white p-6 rounded-xl shadow-lg mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold">Interactive Reading: Part 2 of 2</h1>
+                <p class="mt-2 text-blue-100">Topic: Knock-off Brands in Russia</p>
+            </header>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Reading Text Column -->
+                <div class="bg-white p-6 rounded-xl shadow-md space-y-4 h-screen overflow-y-auto">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-200 pb-2">Reading Text</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p><strong>Kasia Broussalian:</strong> Lines snaked around the block when Moscow’s first McDonald’s opened in 1990. Now decades later, the golden arches are gone. The company left after Russia’s full-scale invasion of Ukraine in 2022, but it’s since been replaced by a local knock-off. Here to explain what this new burger chain signals about the Russian economy is the FT’s special correspondent for eastern Europe, Courtney Weaver.</p>
+                        <p><strong>Courtney Weaver:</strong> So the knock-off McDonald’s has a name. It’s called Vkusno i tochka, which roughly translates as tasty and that’s it... And they sold the business to one of their franchisees... And since then, it’s been kind of a bonanza for the business. They’re actually doing better in Russia than they were when they were under McDonald’s ownership.</p>
+                        <p><strong>Kasia Broussalian:</strong> Well, explain the process of leaving Russia a bit more. What exactly happened when McDonald’s and other western brands pulled out?</p>
+                        <p><strong>Courtney Weaver:</strong> So over the past three years, we’ve seen a lot of Western companies leave Russia... I think everyone had this kind of idea in the back of the mind — that maybe one day the war would end... And a lot of companies that left... left with a 10-year option to buy back the business. And what we’re seeing now is a lot of these businessmen that bought the businesses — they’re not so eager to sell the business back to the original owners. And they wanna make sure that these buyback clauses are nullified, and McDonald’s is a prime example of that.</p>
+                        <p><strong>Kasia Broussalian:</strong> And why are these knock-off companies... so keen to keep the western brands out?</p>
+                        <p><strong>Courtney Weaver:</strong> ...the Russian government is ploughing all this money into the war, which has created all these new industries, obviously, that has lifted up salaries across the board... a lot of Russians have a lot more money in their pockets... and companies like Vkusno i tochka have been the one to benefit. And so you can see why these new owners would be a little bit reluctant to see that go away.</p>
+                        <p><strong>Kasia Broussalian:</strong> All right, so these firms are looking to the Russian government to help them out here. Do you think Moscow is going to?</p>
+                        <p><strong>Courtney Weaver:</strong> Yeah, so in May Putin held a meeting with a lot of executives... And Putin indicated he had already asked the Duma... to start working on a bill that would address this issue...</p>
+                        <p><strong>Kasia Broussalian:</strong> ...What does that tell us about how the Russian economy is changing?</p>
+                        <p><strong>Courtney Weaver:</strong> The economy has really changed... Before the war, Russia was really an export-driven economy, and, obviously, sanctions have crippled that. What we’re seeing is kind of a return, in some ways, to the old Soviet economy, where domestic manufacturing is playing a much bigger role... there’s been a huge pivot towards China... And, as a result, Russia’s economy has become more isolationist.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Exercises Column -->
+                <div class="space-y-8 h-screen overflow-y-auto pr-4">
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">1. Useful Phrases</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><b>Snaked around the block:</b> Formed a very long queue of people.</li>
+                            <li><b>The golden arches are gone:</b> A famous, symbolic brand has left.</li>
+                            <li><b>Full-scale invasion:</b> A large and complete military attack.</li>
+                            <li><b>In the back of the mind:</b> A thought that is always present but not actively considered.</li>
+                            <li><b>Not so eager to sell:</b> Not very willing or enthusiastic to sell.</li>
+                            <li><b>Keen to keep:</b> Very much wanting to retain or hold on to something.</li>
+                            <li><b>Ploughing money into:</b> Investing a large amount of money in something.</li>
+                            <li><b>Across the board:</b> Applying to everyone or everything in a particular group.</li>
+                            <li><b>Export-driven economy:</b> An economy that relies heavily on selling goods to other countries.</li>
+                            <li><b>A huge pivot towards:</b> A significant change in direction or focus to something else.</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">2. True or False?</h3>
+                        <div class="tf-quiz space-y-4">
+                            <div data-answer="F"><p>1. When the first McDonald's opened in Moscow, it was not very popular.</p><label><input type="radio" name="p2q1" value="T">T</label><label><input type="radio" name="p2q1" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>2. The Russian knock-off of McDonald's is performing worse than the original.</p><label><input type="radio" name="p2q2" value="T">T</label><label><input type="radio" name="p2q2" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>3. Western companies that left had an option to buy back their businesses.</p><label><input type="radio" name="p2q3" value="T">T</label><label><input type="radio" name="p2q3" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>4. Government spending on the war has helped lift salaries in Russia.</p><label><input type="radio" name="p2q4" value="T">T</label><label><input type="radio" name="p2q4" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>5. Russia's economy has become less isolationist.</p><label><input type="radio" name="p2q5" value="T">T</label><label><input type="radio" name="p2q5" value="F">F</label><div class="feedback"></div></div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">3. Vocabulary Matching</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 vocab-quiz">
+                            <div class="space-y-3 vocab-container">
+                                <div id="p2v1" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Knock-off</div>
+                                <div id="p2v2" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Franchisee</div>
+                                <div id="p2v3" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Bonanza</div>
+                                <div id="p2v4" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Nullified</div>
+                                <div id="p2v5" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Pivot</div>
+                            </div>
+                            <div class="space-y-3 definitions-container">
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v1">A cheap copy of a popular product</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v2">A person who buys a license to operate a company's business</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v3">A situation that creates sudden wealth or success</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v4">Made legally void or invalid</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v5">A significant change in direction or policy</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">4. Comprehension Questions</h3>
+                        <div class="comprehension-quiz space-y-4">
+                             <div><label class="font-medium">1. What is the approximate English translation of "Vkusno i tochka"?</label><input type="text" class="input-field"><div class="feedback" data-answer="tasty and that's it"></div></div>
+                            <div><label class="font-medium">2. Why did McDonald's and other Western brands leave Russia?</label><input type="text" class="input-field"><div class="feedback" data-answer="invasion of ukraine"></div></div>
+                            <div><label class="font-medium">3. What kind of option did many departing companies leave with?</label><input type="text" class="input-field"><div class="feedback" data-answer="buy back, 10-year"></div></div>
+                            <div><label class="font-medium">4. What is the Duma?</label><input type="text" class="input-field"><div class="feedback" data-answer="parliament, lower house"></div></div>
+                            <div><label class="font-medium">5. Which country has Russia's economy made a "huge pivot" towards?</label><input type="text" class="input-field"><div class="feedback" data-answer="china"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between mt-8">
+            <button id="prev-btn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Previous Topic</button>
+            <button id="check-btn" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700">Check Answers</button>
+            <button id="reset-btn" class="bg-gray-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600">Reset Current Page</button>
+            <button id="next-btn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Next Topic</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = document.querySelectorAll('.page');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const checkBtn = document.getElementById('check-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            let currentPageIndex = 0;
+
+            function updateNavButtons() {
+                prevBtn.disabled = currentPageIndex === 0;
+                nextBtn.disabled = currentPageIndex === pages.length - 1;
+            }
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.classList.toggle('active', i === index);
+                });
+                currentPageIndex = index;
+                updateNavButtons();
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentPageIndex > 0) {
+                    showPage(currentPageIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPageIndex < pages.length - 1) {
+                    showPage(currentPageIndex + 1);
+                }
+            });
+            
+            showPage(0);
+
+            // --- Drag and Drop Logic for ALL pages ---
+            const draggables = document.querySelectorAll('.draggable');
+            let draggedItem = null;
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    setTimeout(() => e.target.classList.add('dragging'), 0);
+                });
+                draggable.addEventListener('dragend', (e) => e.target.classList.remove('dragging'));
+            });
+            
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', e => e.preventDefault());
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    if (draggedItem && draggedItem.closest('.page').id === zone.closest('.page').id) {
+                         if (zone.children.length > 0) {
+                            draggedItem.parentElement.appendChild(zone.firstElementChild);
+                        }
+                        zone.appendChild(draggedItem);
+                        draggedItem = null;
+                    }
+                });
+            });
+
+            // --- Check Answers on CURRENT page ---
+            checkBtn.addEventListener('click', () => {
+                const currentPage = document.querySelector('.page.active');
+                
+                // T/F Quiz
+                currentPage.querySelectorAll('.tf-quiz > div').forEach(q => {
+                    const selected = q.querySelector('input:checked');
+                    const feedback = q.querySelector('.feedback');
+                    feedback.classList.add('show');
+                    if (selected && selected.value === q.dataset.answer) {
+                        feedback.textContent = 'Correct!';
+                        feedback.className = 'feedback show correct';
+                    } else {
+                        feedback.textContent = `Incorrect. The correct answer is ${q.dataset.answer}.`;
+                        feedback.className = 'feedback show incorrect';
+                    }
+                });
+
+                // Vocab Matching
+                currentPage.querySelectorAll('.vocab-quiz .drop-zone').forEach(zone => {
+                    const dropped = zone.querySelector('.draggable');
+                    if (dropped && dropped.id === zone.dataset.match) {
+                        zone.classList.remove('incorrect');
+                        zone.classList.add('correct');
+                    } else {
+                        zone.classList.remove('correct');
+                        zone.classList.add('incorrect');
+                    }
+                });
+
+                // Comprehension Quiz
+                currentPage.querySelectorAll('.comprehension-quiz > div').forEach(q => {
+                    const input = q.querySelector('input');
+                    const feedback = q.querySelector('.feedback');
+                    const keywords = feedback.dataset.answer.split(',').map(k => k.trim().toLowerCase());
+                    const answer = input.value.toLowerCase();
+                    feedback.classList.add('show');
+                    if (keywords.some(key => answer.includes(key))) {
+                        feedback.textContent = 'Correct!';
+                        feedback.className = 'feedback show correct';
+                    } else {
+                        feedback.textContent = `Check the text again. Key ideas: ${keywords.join(', ')}.`;
+                        feedback.className = 'feedback show incorrect';
+                    }
+                });
+            });
+
+            // --- Reset CURRENT page ---
+            resetBtn.addEventListener('click', () => {
+                const currentPage = document.querySelector('.page.active');
+                currentPage.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                currentPage.querySelectorAll('input[type="text"]').forEach(i => i.value = '');
+                currentPage.querySelectorAll('.feedback').forEach(f => {
+                    f.className = 'feedback';
+                    f.textContent = '';
+                });
+
+                const vocabContainer = currentPage.querySelector('.vocab-container');
+                currentPage.querySelectorAll('.drop-zone').forEach(zone => {
+                    if (zone.children.length > 0) {
+                        vocabContainer.appendChild(zone.firstElementChild);
+                    }
+                    zone.className = 'drop-zone p-3 rounded-lg';
+                });
+                if(vocabContainer) {
+                     Array.from(vocabContainer.children)
+                        .sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric: true}))
+                        .forEach(node => vocabContainer.appendChild(node));
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
