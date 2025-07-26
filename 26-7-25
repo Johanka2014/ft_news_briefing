@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Reading: News Briefing (B1 Level)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .correct {
+            background-color: #c6f6d5; /* green-200 */
+            border-left: 4px solid #38a169; /* green-600 */
+        }
+        .incorrect {
+            background-color: #fed7d7; /* red-200 */
+            border-left: 4px solid #c53030; /* red-600 */
+        }
+        .feedback {
+            font-weight: 500;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 0.25rem;
+            display: none; /* Hidden by default */
+        }
+        .feedback.show {
+            display: block;
+        }
+        .draggable {
+            cursor: move;
+            user-select: none;
+        }
+        .drop-zone {
+            border: 2px dashed #a0aec0; /* gray-400 */
+            min-height: 50px;
+        }
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #3182ce;
+        }
+        .input-field {
+             margin-top: 0.25rem;
+             display: block;
+             width: 100%;
+             border-radius: 0.375rem;
+             border: 1px solid #d1d5db;
+             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Page 1: Ukraine -->
+        <div id="page1" class="page active">
+            <header class="bg-blue-600 text-white p-6 rounded-xl shadow-lg mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold">Interactive Reading: Part 1 of 2</h1>
+                <p class="mt-2 text-blue-100">Topic: Worries about Ukraine's Government</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Reading Text Column -->
+                <div class="bg-white p-6 rounded-xl shadow-md space-y-4 h-screen overflow-y-auto">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-200 pb-2">Reading Text</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p><strong>Marc Filippino:</strong> Some critics say the Ukrainian government is becoming less democratic. Police have raided the homes of well-known public figures. They have also helped loyal people get government jobs. This has made activists, diplomats, and the media worried. At the same time, the country is trying hard to get weapons from Western countries for its war against Russia... Here to explain this is the FT’s Ukraine correspondent, Chris Miller. Hey, Chris.</p>
+                        <p><strong>Christopher Miller:</strong> Hey, Marc.</p>
+                        <p><strong>Marc Filippino:</strong> So let's start with the police raids. Why are people so angry?</p>
+                        <p><strong>Christopher Miller:</strong> Sure. Last Friday morning, the State Bureau of Investigation (SBI) was doing two different raids. One raid was in Kyiv, at the office and home of the former infrastructure minister, Oleksandr Kubrakov. Another raid was in the city of Kharkiv, at the family home of a famous anti-corruption activist, Vitaliy Shabunin. These men are accused of doing illegal things, but they both say the accusations are false. They believe the raids happened for political reasons.</p>
+                        <p><strong>Marc Filippino:</strong> So these two men are part of a group that is unhappy with President Zelenskyy. Why are they unhappy with him?</p>
+                        <p><strong>Christopher Miller:</strong> Well, they worry that Zelenskyy and his office have too much power and are using it in a bad way. They also worry about corruption during the war. Because everyone is focused on the war, some important changes needed for Ukraine to join the European Union have been forgotten.</p>
+                        <p><strong>Marc Filippino:</strong> What will happen to Zelenskyy and the war if more people stop supporting him?</p>
+                        <p><strong>Christopher Miller:</strong> We are seeing that the unity in Ukraine is starting to break. Part of this is because people are very tired. The war has been going on for three and a half years and it is causing many problems. This move towards a less democratic government increases the risk of problems inside the country. The security services warn this could be very bad.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Exercises Column -->
+                <div class="space-y-8 h-screen overflow-y-auto pr-4">
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">1. Useful Phrases</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><b>Becoming less democratic:</b> When a government gets more power and people get less freedom.</li>
+                            <li><b>Well-known:</b> Famous or known by many people.</li>
+                            <li><b>Worried:</b> Feeling nervous or anxious about something.</li>
+                            <li><b>Accusations are false:</b> The claims against someone are not true.</li>
+                            <li><b>For political reasons:</b> To get a political advantage, not for a fair reason.</li>
+                            <li><b>Unhappy with:</b> Not pleased with someone or something.</li>
+                            <li><b>Using power in a bad way:</b> Abusing authority.</li>
+                            <li><b>Unity is starting to break:</b> People are not working together as much as before.</li>
+                            <li><b>Causing many problems:</b> Creating difficulties.</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">2. True or False?</h3>
+                        <div class="tf-quiz space-y-4">
+                            <div data-answer="F"><p>1. The police raided the home of only one famous person.</p><label><input type="radio" name="p1q1" value="T">T</label><label><input type="radio" name="p1q1" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>2. The men who were raided say the claims are not true.</p><label><input type="radio" name="p1q2" value="T">T</label><label><input type="radio" name="p1q2" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>3. Critics worry that President Zelenskyy has too much power.</p><label><input type="radio" name="p1q3" value="T">T</label><label><input type="radio" name="p1q3" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>4. It has been easy to focus on reforms during the war.</p><label><input type="radio" name="p1q4" value="T">T</label><label><input type="radio" name="p1q4" value="F">F</label><div class="feedback"></div></div>
+                             <div data-answer="T"><p>5. There is a risk of new problems inside Ukraine.</p><label><input type="radio" name="p1q5" value="T">T</label><label><input type="radio" name="p1q5" value="F">F</label><div class="feedback"></div></div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">3. Vocabulary Matching</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 vocab-quiz">
+                            <div class="space-y-3 vocab-container">
+                                <div id="p1v1" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Critics</div>
+                                <div id="p1v2" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Raided</div>
+                                <div id="p1v3" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Loyal</div>
+                                <div id="p1v4" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Corruption</div>
+                                <div id="p1v5" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Unity</div>
+                            </div>
+                            <div class="space-y-3 definitions-container">
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v1">People who say what they think is bad about something</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v2">Suddenly entered a place to look for something</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v3">Always supporting someone or something</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v4">Dishonest or illegal behaviour by people in power</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p1v5">The state of being together as one</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">4. Comprehension Questions</h3>
+                        <div class="comprehension-quiz space-y-4">
+                            <div><label class="font-medium">1. Who did the police raid?</label><input type="text" class="input-field"><div class="feedback" data-answer="minister, activist"></div></div>
+                            <div><label class="font-medium">2. Why do the men think the raids happened?</label><input type="text" class="input-field"><div class="feedback" data-answer="political reasons"></div></div>
+                            <div><label class="font-medium">3. What have been forgotten because of the war?</label><input type="text" class="input-field"><div class="feedback" data-answer="reforms, changes"></div></div>
+                             <div><label class="font-medium">4. What is starting to break in Ukraine?</label><input type="text" class="input-field"><div class="feedback" data-answer="unity"></div></div>
+                              <div><label class="font-medium">5. Why are people in Ukraine tired?</label><input type="text" class="input-field"><div class="feedback" data-answer="war"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 2: Israel -->
+        <div id="page2" class="page">
+             <header class="bg-blue-600 text-white p-6 rounded-xl shadow-lg mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold">Interactive Reading: Part 2 of 2</h1>
+                <p class="mt-2 text-blue-100">Topic: Israel's Successful Stock Market</p>
+            </header>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Reading Text Column -->
+                <div class="bg-white p-6 rounded-xl shadow-md space-y-4 h-screen overflow-y-auto">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-200 pb-2">Reading Text</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p><strong>Marc Filippino:</strong> Israel now has the world's best stock market. This is mostly because the country's economy is growing very fast. This is happening even with the conflict in Gaza and bombing in nearby countries. So, with so much criticism, why isn't the Israeli stock market changing more? Here to talk about it is FT columnist Ruchir Sharma.</p>
+                        <p><strong>Ruchir Sharma:</strong> Hey, Marc.</p>
+                        <p><strong>Marc Filippino:</strong> So, how well is the Israeli stock market doing?</p>
+                        <p><strong>Ruchir Sharma:</strong> Well, one fact really surprised me. Since the conflict began on October 7th, 2023, the Israeli stock market is up 80 per cent in dollar terms. That's more than any other developed market in the world. So, it is the best market over the last 21 months.</p>
+                        <p><strong>Marc Filippino:</strong> Yes, that is surprising. Why weren't investors affected by all of this? Why did they buy more in the Israeli market?</p>
+                        <p><strong>Ruchir Sharma:</strong> I think the market sent a message. One message was that the conflict was not going to last, and Israel was going to win. The second thing is that it shows the strength of Israel's economy, which is technology. Since October 2023, there has also been a big AI tech boom.</p>
+                        <p><strong>Marc Filippino:</strong> But what about the criticism? Why hasn't that affected the Israeli economy or market?</p>
+                        <p><strong>Ruchir Sharma:</strong> I think the markets only look at the economy and company profits. There is also a worldwide tech boom. We see a similar thing in the US. The economy has been strong, and I think it's because of the AI boom in America.</p>
+                        <p><strong>Marc Filippino:</strong> Is there anything that could shake the markets in Israel?</p>
+                        <p><strong>Ruchir Sharma:</strong> If there is a new conflict, or if the current one gets worse, the market will not like that. Also, if the interest in AI technology ends, the market would have a problem.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Exercises Column -->
+                <div class="space-y-8 h-screen overflow-y-auto pr-4">
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">1. Useful Phrases</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><b>Stock market:</b> A place where parts of companies (shares) are bought and sold.</li>
+                            <li><b>Economy is growing:</b> A country is making more money and has more jobs.</li>
+                            <li><b>Conflict:</b> A serious disagreement or fight.</li>
+                            <li><b>Criticism:</b> Saying that you think something is bad.</li>
+                            <li><b>Investors:</b> People who put money into something to make more money.</li>
+                            <li><b>To win:</b> To be successful in a fight or competition.</li>
+                            <li><b>Strength of the economy:</b> How well a country's economy is doing.</li>
+                            <li><b>Tech boom:</b> A time when technology companies grow very quickly.</li>
+                            <li><b>Have a problem:</b> To experience a difficulty or a setback.</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">2. True or False?</h3>
+                        <div class="tf-quiz space-y-4">
+                            <div data-answer="T"><p>1. Israel currently has the world's best stock market.</p><label><input type="radio" name="p2q1" value="T">T</label><label><input type="radio" name="p2q1" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>2. The market is doing badly because of the conflict in Gaza.</p><label><input type="radio" name="p2q2" value="T">T</label><label><input type="radio" name="p2q2" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>3. The Israeli stock market is up 80% since October 2023.</p><label><input type="radio" name="p2q3" value="T">T</label><label><input type="radio" name="p2q3" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="F"><p>4. Investors from other countries are not buying in the Israeli market.</p><label><input type="radio" name="p2q4" value="T">T</label><label><input type="radio" name="p2q4" value="F">F</label><div class="feedback"></div></div>
+                            <div data-answer="T"><p>5. If the AI boom ends, the market could have a problem.</p><label><input type="radio" name="p2q5" value="T">T</label><label><input type="radio" name="p2q5" value="F">F</label><div class="feedback"></div></div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">3. Vocabulary Matching</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 vocab-quiz">
+                            <div class="space-y-3 vocab-container">
+                                <div id="p2v1" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Mostly</div>
+                                <div id="p2v2" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Surprised</div>
+                                <div id="p2v3" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Message</div>
+                                <div id="p2v4" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Profits</div>
+                                <div id="p2v5" draggable="true" class="draggable p-3 bg-blue-100 rounded-lg">Shake</div>
+                            </div>
+                            <div class="space-y-3 definitions-container">
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v1">Mainly or most of the time</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v2">Feeling of wonder when something unexpected happens</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v3">An important idea that someone is trying to tell people</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v4">Money that is earned in trade or business</div>
+                                <div class="drop-zone p-3 rounded-lg" data-match="p2v5">To make something feel less certain or stable</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">4. Comprehension Questions</h3>
+                        <div class="comprehension-quiz space-y-4">
+                             <div><label class="font-medium">1. What is the main reason for Israel's fast-growing economy?</label><input type="text" class="input-field"><div class="feedback" data-answer="technology, tech"></div></div>
+                            <div><label class="font-medium">2. What was the "message" from the market?</label><input type="text" class="input-field"><div class="feedback" data-answer="conflict would not last, israel would win"></div></div>
+                            <div><label class="font-medium">3. What kind of "boom" has helped Israel's economy?</label><input type="text" class="input-field"><div class="feedback" data-answer="ai, tech"></div></div>
+                            <div><label class="font-medium">4. What do markets look at?</label><input type="text" class="input-field"><div class="feedback" data-answer="economy, profits"></div></div>
+                            <div><label class="font-medium">5. What is one thing that could cause a problem for the market?</label><input type="text" class="input-field"><div class="feedback" data-answer="new conflict, ai ends"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between mt-8">
+            <button id="prev-btn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Previous Topic</button>
+            <button id="check-btn" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700">Check Answers</button>
+            <button id="reset-btn" class="bg-gray-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600">Reset Current Page</button>
+            <button id="next-btn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">Next Topic</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = document.querySelectorAll('.page');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const checkBtn = document.getElementById('check-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            let currentPageIndex = 0;
+
+            function updateNavButtons() {
+                prevBtn.disabled = currentPageIndex === 0;
+                nextBtn.disabled = currentPageIndex === pages.length - 1;
+            }
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.classList.toggle('active', i === index);
+                });
+                currentPageIndex = index;
+                updateNavButtons();
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentPageIndex > 0) {
+                    showPage(currentPageIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPageIndex < pages.length - 1) {
+                    showPage(currentPageIndex + 1);
+                }
+            });
+            
+            showPage(0);
+
+            // --- Drag and Drop Logic for ALL pages ---
+            const draggables = document.querySelectorAll('.draggable');
+            let draggedItem = null;
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    setTimeout(() => e.target.classList.add('dragging'), 0);
+                });
+                draggable.addEventListener('dragend', (e) => e.target.classList.remove('dragging'));
+            });
+            
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', e => e.preventDefault());
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    if (draggedItem && draggedItem.closest('.page').id === zone.closest('.page').id) {
+                         if (zone.children.length > 0) {
+                            // Swap items if drop zone is already occupied
+                            draggedItem.parentElement.appendChild(zone.firstElementChild);
+                        }
+                        zone.appendChild(draggedItem);
+                        draggedItem = null;
+                    }
+                });
+            });
+
+            // --- Check Answers on CURRENT page ---
+            checkBtn.addEventListener('click', () => {
+                const currentPage = document.querySelector('.page.active');
+                
+                // T/F Quiz
+                currentPage.querySelectorAll('.tf-quiz > div').forEach(q => {
+                    const selected = q.querySelector('input:checked');
+                    const feedback = q.querySelector('.feedback');
+                    feedback.classList.add('show');
+                    if (selected && selected.value === q.dataset.answer) {
+                        feedback.textContent = 'Correct!';
+                        feedback.className = 'feedback show correct';
+                    } else {
+                        feedback.textContent = `Incorrect. The correct answer is ${q.dataset.answer}.`;
+                        feedback.className = 'feedback show incorrect';
+                    }
+                });
+
+                // Vocab Matching
+                currentPage.querySelectorAll('.vocab-quiz .drop-zone').forEach(zone => {
+                    const dropped = zone.querySelector('.draggable');
+                    if (dropped && dropped.dataset.match === zone.dataset.match) {
+                        zone.classList.remove('incorrect');
+                        zone.classList.add('correct');
+                    } else {
+                         if (dropped && dropped.id === zone.dataset.match) {
+                             zone.classList.remove('incorrect');
+                             zone.classList.add('correct');
+                         } else {
+                            zone.classList.remove('correct');
+                            zone.classList.add('incorrect');
+                         }
+                    }
+                });
+
+
+                // Comprehension Quiz
+                currentPage.querySelectorAll('.comprehension-quiz > div').forEach(q => {
+                    const input = q.querySelector('input');
+                    const feedback = q.querySelector('.feedback');
+                    const keywords = feedback.dataset.answer.split(',').map(k => k.trim().toLowerCase());
+                    const answer = input.value.toLowerCase();
+                    feedback.classList.add('show');
+                    if (keywords.some(key => answer.includes(key))) {
+                        feedback.textContent = 'Correct!';
+                        feedback.className = 'feedback show correct';
+                    } else {
+                        feedback.textContent = `Check the text again. Key ideas: ${keywords.join(', ')}.`;
+                        feedback.className = 'feedback show incorrect';
+                    }
+                });
+            });
+
+            // --- Reset CURRENT page ---
+            resetBtn.addEventListener('click', () => {
+                const currentPage = document.querySelector('.page.active');
+                currentPage.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                currentPage.querySelectorAll('input[type="text"]').forEach(i => i.value = '');
+                currentPage.querySelectorAll('.feedback').forEach(f => {
+                    f.className = 'feedback';
+                    f.textContent = '';
+                });
+
+                const vocabContainer = currentPage.querySelector('.vocab-container');
+                currentPage.querySelectorAll('.drop-zone').forEach(zone => {
+                    if (zone.children.length > 0) {
+                        vocabContainer.appendChild(zone.firstElementChild);
+                    }
+                    zone.className = 'drop-zone p-3 rounded-lg';
+                });
+                if(vocabContainer) {
+                     // Sort the items back to their original order
+                     Array.from(vocabContainer.children)
+                        .sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric: true}))
+                        .forEach(node => vocabContainer.appendChild(node));
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
