@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Reading: The Age Rebellion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        .correct {
+            background-color: #c6f6d5; /* green-200 */
+            border: 2px solid #38a169; /* green-600 */
+        }
+        .incorrect {
+            background-color: #fed7d7; /* red-200 */
+            border: 2px solid #c53030; /* red-600 */
+        }
+        .feedback {
+            font-weight: 500;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .draggable {
+            cursor: move;
+            user-select: none;
+            touch-action: none;
+        }
+        .drop-zone {
+            border: 2px dashed #a0aec0; /* gray-400 */
+            min-height: 50px;
+            transition: background-color 0.2s;
+        }
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #3182ce;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="bg-blue-700 text-white p-8 rounded-xl shadow-lg mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold">The Age Rebellion</h1>
+            <p class="mt-2 text-blue-100 text-lg italic">"If hiding your age improves your chances, the system is broken — not the person."</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Reading Text Column -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-blue-700 mb-6 border-b-2 border-blue-100 pb-2">Article: Age Bias in the Workplace</h2>
+                <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+                   <p class="text-xl font-bold italic text-gray-900">‘I couldn’t get a job so hid my age on my CV. Then the offers came flooding in’</p>
+                   
+                   <p>I was quoted in yesterday and today’s <em>The Times</em> articles on this topic because this is exactly what we see every day — people being <strong>filtered out</strong> before they’re even considered, simply because of age.</p>
+
+                   <p>When someone has to remove dates or <strong>downplay</strong> experience to get hired, that’s not a confidence issue — it’s <strong>systemic</strong> age bias.</p>
+
+                   <p>At 55/Redefined, we fix this <strong>at the source</strong> — inside organisations — by providing age intelligence that <strong>rewires</strong> how leadership think about our ageing workforce and the immense value that it is creating for organisations, and then provide solutions that engage and value older talent so people don’t have to hide who they are to be hired, developed and retained.</p>
+
+                   <p>And for individuals living this reality right now, that’s exactly why I wrote <em>The Age Rebellion</em>. To challenge the idea that opportunity has an <strong>expiry date</strong> and to help people design what comes next on their own terms. Find out more at www.the-age-rebellion.com. It’s available for pre-order now.</p>
+                   
+                   <p class="font-bold border-l-4 border-blue-600 pl-4 py-2 bg-blue-50">If hiding your age improves your chances, the system is broken — not the person.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Exercises Column -->
+            <div class="space-y-8">
+                <!-- Activity 1: Multiple Choice -->
+                <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">1. Reading Comprehension</h3>
+                    <div id="mc-quiz" class="space-y-6">
+                        <!-- Question 1 -->
+                        <div>
+                            <p class="font-medium">What does the author identify as the cause for people hiding their age on CVs?</p>
+                            <div class="space-y-2 mt-2" data-answer="b">
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc1" value="a" class="mr-3">A lack of confidence in older candidates.</label>
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc1" value="b" class="mr-3">Systemic bias within the recruitment system.</label>
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc1" value="c" class="mr-3">A lack of relevant experience for modern roles.</label>
+                            </div>
+                            <div class="feedback"></div>
+                        </div>
+                        <!-- Question 2 -->
+                        <div>
+                            <p class="font-medium">What is the specific goal of "55/Redefined"?</p>
+                            <div class="space-y-2 mt-2" data-answer="c">
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc2" value="a" class="mr-3">Helping individuals write better CVs.</label>
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc2" value="b" class="mr-3">Encouraging early retirement for older workers.</label>
+                                <label class="block p-3 rounded-lg border border-gray-200 hover:bg-blue-50 cursor-pointer"><input type="radio" name="mc2" value="c" class="mr-3">Changing how leadership perceives and values older talent.</label>
+                            </div>
+                            <div class="feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 2: True or False -->
+                <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">2. True or False?</h3>
+                    <div id="tf-quiz" class="space-y-4">
+                        <div class="flex items-center justify-between p-3 border-b border-gray-100" data-answer="T">
+                            <span class="flex-1 mr-4">The author believes the recruitment system is what needs fixing, not the applicants.</span>
+                            <div class="flex space-x-2">
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="T">T</button>
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="F">F</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border-b border-gray-100" data-answer="F">
+                            <span class="flex-1 mr-4">The author suggests that older workers should accept that their opportunity has an expiry date.</span>
+                            <div class="flex space-x-2">
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="T">T</button>
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="F">F</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3" data-answer="T">
+                            <span class="flex-1 mr-4">Hiding one's age resulted in a significant increase in job offers for some candidates.</span>
+                            <div class="flex space-x-2">
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="T">T</button>
+                                <button class="tf-btn px-4 py-1 border rounded hover:bg-blue-100 transition" data-val="F">F</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 3: Vocabulary Matching -->
+                <div class="activity-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">3. Vocabulary Matching</h3>
+                    <p class="text-sm text-gray-500 mb-4">Drag the terms to their matching definitions.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-3" id="phrases-container">
+                            <div id="p1" draggable="true" class="draggable p-3 bg-blue-50 rounded-lg border border-blue-200 font-medium">Filtered out</div>
+                            <div id="p2" draggable="true" class="draggable p-3 bg-blue-50 rounded-lg border border-blue-200 font-medium">Downplay</div>
+                            <div id="p3" draggable="true" class="draggable p-3 bg-blue-50 rounded-lg border border-blue-200 font-medium">Rewires</div>
+                            <div id="p4" draggable="true" class="draggable p-3 bg-blue-50 rounded-lg border border-blue-200 font-medium">At the source</div>
+                            <div id="p5" draggable="true" class="draggable p-3 bg-blue-50 rounded-lg border border-blue-200 font-medium">Expiry date</div>
+                        </div>
+                        <div class="space-y-3" id="definitions-container">
+                            <div class="drop-zone p-3 rounded-lg bg-gray-50 border-2" data-match="p1">Automatically removed from a selection process</div>
+                            <div class="drop-zone p-3 rounded-lg bg-gray-50 border-2" data-match="p2">To make something seem less important than it is</div>
+                            <div class="drop-zone p-3 rounded-lg bg-gray-50 border-2" data-match="p3">Changes the fundamental way something functions or thinks</div>
+                            <div class="drop-zone p-3 rounded-lg bg-gray-50 border-2" data-match="p4">Dealing with a problem where it begins</div>
+                            <div class="drop-zone p-3 rounded-lg bg-gray-50 border-2" data-match="p5">A point in time when something is no longer valid or useful</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex space-x-4 mt-6">
+                    <button id="check-all-btn" class="w-full bg-blue-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-blue-800 transition shadow-md">Check All Answers</button>
+                    <button id="reset-btn" class="w-full bg-gray-400 text-white font-bold py-4 px-6 rounded-lg hover:bg-gray-500 transition shadow-md">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // T/F logic
+            const tfButtons = document.querySelectorAll('.tf-btn');
+            tfButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const parent = btn.parentElement;
+                    parent.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600'));
+                    btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+                    btn.setAttribute('data-selected', 'true');
+                });
+            });
+
+            // Drag and Drop
+            const draggables = document.querySelectorAll('.draggable');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let draggedItem = null;
+
+            draggables.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedItem = item;
+                    setTimeout(() => item.classList.add('dragging'), 0);
+                });
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', e => e.preventDefault());
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    if (draggedItem) {
+                        if (zone.children.length > 0) {
+                            document.getElementById('phrases-container').appendChild(zone.firstElementChild);
+                        }
+                        zone.appendChild(draggedItem);
+                    }
+                });
+            });
+
+            // Check All
+            document.getElementById('check-all-btn').addEventListener('click', () => {
+                // MC
+                document.querySelectorAll('#mc-quiz > div').forEach(q => {
+                    const answer = q.querySelector('div[data-answer]').dataset.answer;
+                    const selected = q.querySelector('input:checked');
+                    const feedback = q.querySelector('.feedback');
+                    if (selected) {
+                        if (selected.value === answer) {
+                            feedback.textContent = "Correct!";
+                            feedback.className = "feedback correct";
+                        } else {
+                            feedback.textContent = `Incorrect. The correct answer is ${answer.toUpperCase()}.`;
+                            feedback.className = "feedback incorrect";
+                        }
+                    } else {
+                        feedback.textContent = "Please select an answer.";
+                        feedback.className = "feedback text-gray-500 italic";
+                    }
+                });
+
+                // TF
+                document.querySelectorAll('#tf-quiz > div').forEach(row => {
+                    const answer = row.dataset.answer;
+                    const selectedBtn = row.querySelector('.tf-btn[data-selected="true"]');
+                    if (selectedBtn) {
+                        if (selectedBtn.dataset.val === answer) {
+                            row.classList.add('correct');
+                            row.classList.remove('incorrect');
+                        } else {
+                            row.classList.add('incorrect');
+                            row.classList.remove('correct');
+                        }
+                    }
+                });
+
+                // Drag
+                dropZones.forEach(zone => {
+                    const child = zone.querySelector('.draggable');
+                    if (child && child.id === zone.dataset.match) {
+                        zone.classList.add('correct');
+                        zone.classList.remove('incorrect');
+                    } else {
+                        zone.classList.add('incorrect');
+                        zone.classList.remove('correct');
+                    }
+                });
+            });
+
+            // Reset
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                document.querySelectorAll('.feedback').forEach(f => { f.textContent = ''; f.className = 'feedback'; });
+                document.querySelectorAll('.tf-btn').forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+                    b.removeAttribute('data-selected');
+                });
+                document.querySelectorAll('#tf-quiz > div, .drop-zone').forEach(el => el.classList.remove('correct', 'incorrect'));
+                
+                const container = document.getElementById('phrases-container');
+                document.querySelectorAll('.drop-zone .draggable').forEach(item => container.appendChild(item));
+            });
+        });
+    </script>
+</body>
+</html>
