@@ -84,6 +84,12 @@
             <button onclick="switchTab('learn')" id="tab-learn" class="tab-active pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center">
                 📖 Learn Facts
             </button>
+            <button onclick="switchTab('vocab')" id="tab-vocab" class="tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center">
+                🔤 Vocabulary
+            </button>
+            <button onclick="switchTab('wordorder')" id="tab-wordorder" class="tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center">
+                🔀 Word Order
+            </button>
             <button onclick="switchTab('sort')" id="tab-sort" class="tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center">
                 ⚖️ Pro vs. Con
             </button>
@@ -171,8 +177,76 @@
             </div>
             
             <div class="text-center">
-                <button onclick="switchTab('sort')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
-                    Play the Sorting Game →
+                <button onclick="switchTab('vocab')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
+                    Practice Vocabulary →
+                </button>
+            </div>
+        </section>
+
+        <section id="section-vocab" class="hidden flex-grow">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 border border-blue-100 mb-6">
+                <h2 class="text-2xl font-bold text-blue-900 mb-2">B2 Vocabulary Builder</h2>
+                <p class="text-slate-600 mb-6">Complete the sentences from the article using the correct B2-level vocabulary words.</p>
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+                    <h3 class="text-sm font-bold text-blue-800 uppercase tracking-wider mb-3">Word Bank</h3>
+                    <div class="flex flex-wrap gap-2" id="word-bank">
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">acknowledges</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">alternative</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">heritage</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">collaboration</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">impairs</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">devoted</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">conductive</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">adhere</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">optimistic</span>
+                        <span class="bg-white border border-blue-300 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">embedded</span>
+                    </div>
+                </div>
+
+                <div id="vocab-exercises" class="space-y-6 text-slate-700 leading-relaxed">
+                    <!-- Javascript will populate the sentences here -->
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+                    <div id="vocab-feedback" class="text-lg font-bold opacity-0 transition-opacity"></div>
+                    <button onclick="checkVocab()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
+                        Check Answers
+                    </button>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button onclick="switchTab('wordorder')" class="text-blue-600 hover:text-blue-800 font-semibold underline decoration-2 underline-offset-4">
+                    Skip to Word Order Exercise
+                </button>
+            </div>
+        </section>
+
+        <section id="section-wordorder" class="hidden flex-grow flex flex-col items-center justify-center">
+            <div class="w-full max-w-2xl bg-white rounded-xl shadow-md p-6 md:p-8 border border-blue-100 mb-6 text-center">
+                <h2 class="text-2xl font-bold text-blue-900 mb-2">Sentence Builder</h2>
+                <p class="text-slate-600 mb-6">Click the words in the correct order to rebuild the sentence from the text. (<span id="wo-progress" class="font-bold text-blue-600">1/10</span>)</p>
+
+                <!-- Constructed Sentence Area -->
+                <div id="wo-target-area" class="min-h-[80px] p-4 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg mb-6 flex flex-wrap gap-2 items-center justify-center transition-colors">
+                </div>
+
+                <!-- Available Words Area -->
+                <div id="wo-source-area" class="min-h-[80px] flex flex-wrap gap-2 items-center justify-center mb-8">
+                </div>
+
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <div id="wo-feedback" class="text-lg font-bold opacity-0 transition-opacity"></div>
+                    <div class="flex gap-4">
+                        <button onclick="checkWordOrder()" id="wo-check-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">Check Answer</button>
+                        <button onclick="nextWordOrder()" id="wo-next-btn" class="hidden bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">Next Sentence →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button onclick="switchTab('sort')" class="text-blue-600 hover:text-blue-800 font-semibold underline decoration-2 underline-offset-4">
+                    Skip to Sorting Game
                 </button>
             </div>
         </section>
@@ -251,11 +325,15 @@
         function switchTab(tabId) {
             // Hide all sections
             document.getElementById('section-learn').classList.add('hidden');
+            document.getElementById('section-vocab').classList.add('hidden');
+            document.getElementById('section-wordorder').classList.add('hidden');
             document.getElementById('section-sort').classList.add('hidden');
             document.getElementById('section-quiz').classList.add('hidden');
 
             // Reset all tabs
             document.getElementById('tab-learn').className = 'tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
+            document.getElementById('tab-vocab').className = 'tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
+            document.getElementById('tab-wordorder').className = 'tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
             document.getElementById('tab-sort').className = 'tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
             document.getElementById('tab-quiz').className = 'tab-inactive pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
 
@@ -265,10 +343,91 @@
             document.getElementById('tab-' + tabId).className = 'tab-active pb-3 px-4 md:px-6 text-sm md:text-base whitespace-nowrap transition-colors flex-1 text-center';
 
             // Initialize specific tab logic if needed
-            if (tabId === 'sort' && currentSortIndex === 0) {
+            if (tabId === 'vocab' && !vocabRendered) {
+                renderVocab();
+            } else if (tabId === 'wordorder' && !woRendered) {
+                initWordOrder();
+                woRendered = true;
+            } else if (tabId === 'sort' && currentSortIndex === 0) {
                 renderSortCard();
             } else if (tabId === 'quiz' && !quizRendered) {
                 renderQuiz();
+            }
+        }
+
+        const vocabData = [
+            { id: "v1", answer: "acknowledges", textBefore: "1. Kate ", textAfter: " that some people still hate the look of solar panels." },
+            { id: "v2", answer: "alternative", textBefore: "2. For those that hate the look of regular panels, an ", textAfter: " is a solar roof." },
+            { id: "v3", answer: "heritage", textBefore: "3. This is especially important for historic buildings, where ", textAfter: " rules limit changes." },
+            { id: "v4", answer: "collaboration", textBefore: "4. Solar roofs typically require ", textAfter: " among roofers, solar installers and electricians." },
+            { id: "v5", answer: "impairs", textBefore: "5. Since there is less airflow under the tiles, heat ", textAfter: " solar performance." },
+            { id: "v6", answer: "devoted", textBefore: "6. Much more space would need to be ", textAfter: " to solar roof tiles to produce the same energy." },
+            { id: "v7", answer: "conductive", textBefore: "7. The new technology connects cells using electrically ", textAfter: " adhesive instead of metal wires." },
+            { id: "v8", answer: "adhere", textBefore: "8. Matrix shingling means you don't have to ", textAfter: " to the regular rectangular pattern size." },
+            { id: "v9", answer: "optimistic", textBefore: "9. Despite the sector's setbacks, Learoyd remains ", textAfter: " about the future of the industry." },
+            { id: "v10", answer: "embedded", textBefore: "10. She believes it will eventually become standard to install a new roof with some sort of ", textAfter: " solar technology." }
+        ];
+
+        let vocabRendered = false;
+        const words = ["Select a word...", "acknowledges", "alternative", "heritage", "collaboration", "impairs", "devoted", "conductive", "adhere", "optimistic", "embedded"].sort();
+
+        function renderVocab() {
+            const container = document.getElementById('vocab-exercises');
+            container.innerHTML = '';
+
+            let optionsHtml = words.map(w => `<option value="${w === 'Select a word...' ? '' : w}">${w}</option>`).join('');
+
+            vocabData.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = "flex flex-wrap items-center gap-2";
+                
+                row.innerHTML = `
+                    <span>${item.textBefore}</span>
+                    <select id="select-${item.id}" class="bg-slate-50 border-b-2 border-slate-300 text-blue-800 font-semibold py-1 px-2 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors cursor-pointer rounded-t-md">
+                        ${optionsHtml}
+                    </select>
+                    <span>${item.textAfter}</span>
+                `;
+                container.appendChild(row);
+            });
+            vocabRendered = true;
+        }
+
+        function checkVocab() {
+            let score = 0;
+            let allAnswered = true;
+
+            vocabData.forEach(item => {
+                const selectEl = document.getElementById(`select-${item.id}`);
+                const val = selectEl.value;
+
+                if (!val) {
+                    allAnswered = false;
+                    selectEl.classList.add('border-red-400', 'bg-red-50');
+                    selectEl.classList.remove('border-green-500', 'bg-green-50', 'border-slate-300');
+                } else if (val === item.answer) {
+                    score++;
+                    selectEl.classList.remove('border-red-400', 'bg-red-50', 'border-slate-300');
+                    selectEl.classList.add('border-green-500', 'bg-green-50', 'text-green-700');
+                    selectEl.disabled = true; // Lock in correct answer
+                } else {
+                    selectEl.classList.remove('border-green-500', 'bg-green-50', 'border-slate-300');
+                    selectEl.classList.add('border-red-400', 'bg-red-50', 'text-red-700');
+                }
+            });
+
+            const feedback = document.getElementById('vocab-feedback');
+            feedback.classList.remove('opacity-0');
+
+            if (!allAnswered) {
+                feedback.innerText = "Please fill in all the blanks!";
+                feedback.className = "text-lg font-bold text-orange-500";
+            } else if (score === vocabData.length) {
+                feedback.innerText = "🎉 Perfect! You mastered the vocabulary.";
+                feedback.className = "text-lg font-bold text-green-600";
+            } else {
+                feedback.innerText = `Keep trying! You got ${score} out of ${vocabData.length} right.`;
+                feedback.className = "text-lg font-bold text-blue-600";
             }
         }
 
@@ -456,6 +615,135 @@
             document.getElementById('submit-quiz-btn').classList.remove('hidden');
             document.getElementById('quiz-results').classList.add('hidden');
             renderQuiz();
+        }
+
+        const wordOrderSentences = [
+            "Some people still hate the look of solar panels .",
+            "This is especially important for historic buildings .",
+            "Tesla abruptly stopped marketing its solar roofs in August .",
+            "Solar roofs typically require collaboration among roofers and electricians .",
+            "Heat impairs solar performance .",
+            "Coloured tiles are even less efficient .",
+            "This is a different way of connecting solar cells .",
+            "The electrical current can flow around shaded areas .",
+            "Freesuns is an early adopter of matrix shingling technology .",
+            "Learoyd remains optimistic despite the sector's setbacks ."
+        ];
+
+        let currentWoIndex = 0;
+        let woWords = [];
+        let woSelected = [];
+        let woRendered = false;
+
+        function initWordOrder() {
+            if (currentWoIndex >= wordOrderSentences.length) {
+                document.getElementById('wo-target-area').innerHTML = "<span class='text-green-600 font-bold text-xl'>🎉 All sentences completed!</span>";
+                document.getElementById('wo-source-area').innerHTML = "";
+                document.getElementById('wo-check-btn').classList.add('hidden');
+                document.getElementById('wo-next-btn').classList.add('hidden');
+                return;
+            }
+
+            document.getElementById('wo-progress').innerText = `${currentWoIndex + 1}/10`;
+            const sentence = wordOrderSentences[currentWoIndex];
+            const words = sentence.split(" ");
+            
+            let shuffled = [...words];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            woWords = shuffled.map((text, idx) => ({ id: `wo-${idx}`, text: text }));
+            woSelected = [];
+            
+            document.getElementById('wo-feedback').classList.add('opacity-0');
+            document.getElementById('wo-next-btn').classList.add('hidden');
+            document.getElementById('wo-check-btn').classList.remove('hidden');
+            
+            const targetArea = document.getElementById('wo-target-area');
+            targetArea.classList.remove('bg-green-100', 'border-green-400', 'bg-red-100', 'border-red-400');
+            targetArea.classList.add('bg-blue-50', 'border-blue-300');
+
+            renderWordOrderUI();
+        }
+
+        function renderWordOrderUI() {
+            const sourceArea = document.getElementById('wo-source-area');
+            const targetArea = document.getElementById('wo-target-area');
+            
+            sourceArea.innerHTML = '';
+            targetArea.innerHTML = '';
+
+            woWords.forEach(wordObj => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white border-2 border-blue-200 text-blue-700 px-4 py-2 rounded shadow hover:bg-blue-50 transition-colors cursor-pointer text-lg font-medium";
+                btn.innerText = wordObj.text;
+                btn.onclick = () => selectWoWord(wordObj.id);
+                sourceArea.appendChild(btn);
+            });
+
+            woSelected.forEach(wordObj => {
+                const btn = document.createElement('button');
+                btn.className = "bg-blue-600 border-2 border-blue-700 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition-colors cursor-pointer text-lg font-medium";
+                btn.innerText = wordObj.text;
+                btn.onclick = () => deselectWoWord(wordObj.id);
+                targetArea.appendChild(btn);
+            });
+        }
+
+        function selectWoWord(id) {
+            const wordIndex = woWords.findIndex(w => w.id === id);
+            if (wordIndex > -1) {
+                woSelected.push(woWords[wordIndex]);
+                woWords.splice(wordIndex, 1);
+                renderWordOrderUI();
+            }
+        }
+
+        function deselectWoWord(id) {
+            const wordIndex = woSelected.findIndex(w => w.id === id);
+            if (wordIndex > -1) {
+                woWords.push(woSelected[wordIndex]);
+                woSelected.splice(wordIndex, 1);
+                renderWordOrderUI();
+            }
+        }
+
+        function checkWordOrder() {
+            if (woWords.length > 0) {
+                const fb = document.getElementById('wo-feedback');
+                fb.innerText = "Please use all the words to build the sentence!";
+                fb.className = "text-lg font-bold text-orange-500 block";
+                fb.classList.remove('opacity-0');
+                return;
+            }
+
+            const currentAnswer = woSelected.map(w => w.text).join(" ");
+            const correctAnswer = wordOrderSentences[currentWoIndex];
+            const targetArea = document.getElementById('wo-target-area');
+            const fb = document.getElementById('wo-feedback');
+
+            targetArea.classList.remove('bg-blue-50', 'border-blue-300', 'bg-red-100', 'border-red-400', 'bg-green-100', 'border-green-400');
+
+            if (currentAnswer === correctAnswer) {
+                targetArea.classList.add('bg-green-100', 'border-green-400');
+                fb.innerText = "Correct! Well done. 🎉";
+                fb.className = "text-lg font-bold text-green-600 block fade-in";
+                fb.classList.remove('opacity-0');
+                document.getElementById('wo-check-btn').classList.add('hidden');
+                document.getElementById('wo-next-btn').classList.remove('hidden');
+            } else {
+                targetArea.classList.add('bg-red-100', 'border-red-400');
+                fb.innerText = "Not quite right. Click words in the blue box to send them back and try again.";
+                fb.className = "text-lg font-bold text-red-600 block fade-in";
+                fb.classList.remove('opacity-0');
+            }
+        }
+
+        function nextWordOrder() {
+            currentWoIndex++;
+            initWordOrder();
         }
 
         // Custom Message Box replacement for alert()
